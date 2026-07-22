@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Tools & Resources Hub</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #1e1e24;
+            --card-hover: #262630;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #2e2e38;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            background-color: var(--card-hover);
+            border-color: #3f3f4e;
+        }
+
+        .tool-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: var(--text-color);
+        }
+
+        .tool-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tool-link {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .tool-link:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .tool-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .status-msg {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🔧 Toolstack</h1>
+        <p class="subtitle">Tools I use or listed to help you with modeling, coding, animations, texturing, scripting, etc. Mainly for pack making.</p>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search tools or descriptions...">
+        </div>
+    </header>
+
+    <main id="contentContainer"></main>
+
+    <script>
+        // EMBEDDED JSON DATA DIRECTLY HERE TO BYPASS BROWSER FILE:// RESTRICTIONS
+        const sourcesData = {
+          "Texture Editing": [
+            {
+              "name": "PixiEditor",
+              "description": "A modern 3D box modeler and texture editing tool designed for Minecraft add-ons and models.",
+              "link": "https://pixieditor.net/"
+            },
+            {
+              "name": "Pixelorama",
+              "description": "Animated sprite editor and pixel art tool ideal for creating retro textures and sprite sheets.",
+              "link": "https://orama-interactive.itch.io/pixelorama"
+            },,
+            {
+              "name": "Gimp",
+              "description": "Animated sprite editor and pixel art tool ideal for creating retro textures and sprite sheets.",
+              "link": "https://www.gimp.org/"
+            },
+            {
+              "name": "Aseprite",
+              "description": "Animated sprite editor and pixel art tool ideal for creating retro textures and sprite sheets.",
+              "link": "https://www.aseprite.org/"
+            }
+          ],
+          "Coding": [
+            {
+              "name": "Visual Studio Code",
+              "description": "Code editor optimized for building, editing, and debugging Minecraft Bedrock script API JavaScript/TypeScript.",
+              "link": "https://code.visualstudio.com/"
+            },
+            {
+              "name": "Bridge",
+              "description": "An IDE tailored specifically for Minecraft Bedrock development with auto-completions and project management.",
+              "link": "https://bridge-core.app/"
+            },
+            {
+              "name": "Cursor",
+              "description": "An IDE tailored specifically for Minecraft Bedrock development with auto-completions and project management.",
+              "link": "https://cursor.com/home"
+            },
+            {
+              "name": "GitHub",
+              "description": "Powerful code tool.",
+              "link": "https://github.com/"
+            },
+          ],
+          "Thumbnail Making": [
+            {
+              "name": "PowerPoint",
+              "description": "A slide presentation that provides tools that can be used for making thumbnails.",
+              "link": "https://powerpoint.cloud.microsoft/en-us/"
+            },
+            {
+              "name": "Photopea",
+              "description": "A free web-based advanced image editor with support for PSD files, layer styles, and raster graphics.",
+              "link": "https://www.photopea.com/"
+            },
+          ],
+          "Texture, Modeling, Animations": [
+            {
+              "name": "Blender",
+              "description": "A powerful tool for generic models.",
+              "link": "https://www.blender.org/"
+            },
+            {
+              "name": "BlockBench",
+              "description": "A modern 3D box modeler and texture editing tool designed for Minecraft addons and models.",
+              "link": "https://www.blockbench.net/"
+            },
+            {
+              "name": "SnowStorm",
+              "description": "Particle visual and editor.",
+              "link": "https://snowstorm.app/"
+            },
+            {
+              "name": "BlockBench",
+              "description": "Official Microsoft Bedrock documentation and starter templates for entities, items, and animations.",
+              "link": "https://www.blockbench.net/"
+            }
+          ],
+          "Thumbnail Making": [
+            {
+              "name": "PowerPoint",
+              "description": "A slide presentation that provides tools that can be used for making thumbnails.",
+              "link": "https://powerpoint.cloud.microsoft/en-us/"
+            },
+            {
+              "name": "Photopea",
+              "description": "A free web-based advanced image editor with support for PSD files, layer styles, and raster graphics.",
+              "link": "https://www.photopea.com/"
+            },
+          ],
+          "Thumbnail Posting/Uploading": [
+            {
+              "name": "Image Compressor",
+              "description": "Compresses image file size.",
+              "link": "https://imagecompressor.com/"
+            },
+            {
+              "name": "Im Resizer",
+              "description": "Scale the size of an image.",
+              "link": "https://imresizer.com/"
+            },
+            {
+              "name": "Post Images",
+              "description": "Post images online (generates link.)",
+              "link": "https://postimages.org/"
+            }
+          ],
+          "Pack Maker": [
+            {
+              "name": "Bedrock Tweaks",
+              "description": "Make short, simple, and polished resource packs.",
+              "link": "https://bedrocktweaks.net/resource-packs"
+            },
+            {
+              "name": "HoloPrint",
+              "description": "A hologram structura like schematica and litematica. Tutorial: https://holoprint-mc.github.io/wiki/creating-packs",
+              "link": "https://holoprint-mc.github.io/"
+            }
+          ],
+          "Documentation": [
+            {
+              "name": "Bedrock Wiki",
+              "description": "Help with tools and docs new resources",
+              "link": "https://wiki.bedrock.dev/"
+            },
+            {
+              "name": "Microsoft Documentation",
+              "description": "List of a doc of how the code works",
+              "link": "https://learn.microsoft.com/en-us/minecraft/creator/?view=minecraft-bedrock-stable"
+            },
+            {
+              "name": "Jayly Development Projects",
+              "description": "Useful list of scripts and examples.",
+              "link": "https://jaylydev.github.io/#projects"
+            },
+            {
+              "name": "Script API",
+              "description": "Listed scripts and components.",
+              "link": "https://jaylydev.github.io/scriptapi-docs/latest/"
+            },
+            {
+              "name": "Minecraft/server Changelog",
+              "description": "History of scripts.",
+              "link": "https://learn.microsoft.com/en-us/minecraft/creator/scriptapi/minecraft/server/changelog?view=minecraft-bedrock-experimental#260"
+            },
+            {
+              "name": "Query Functions",
+              "description": "List of existing queries.",
+              "link": "https://learn.microsoft.com/en-us/minecraft/creator/reference/content/molangreference/examples/molangconcepts/queryfunctions?view=minecraft-bedrock-stable"
+            }
+          ],
+          "Extra Tools": [
+            {
+              "name": "Player.entity.json Merger",
+              "description": "Merge Player.entity.json files.",
+              "link": "https://packaverse.github.io/player.entity.json-merger/"
+            },
+            {
+              "name": "UUID Generator",
+              "description": "Generates random uuids for your manifest(s).",
+              "link": "https://www.uuidgenerator.net/"
+            },
+            {
+              "name": "JsonUI Editor",
+              "description": "Resource pack UI visualizer and editor.",
+              "link": "https://gamezasrc.github.io/JSON-UI-Web-Editor/"
+            },
+            {
+              "name": "Json UI Maker",
+              "description": "Resource pack UI maker that visualizes and edit.",
+              "link": "https://sebthesigma.github.io/JSON-UI-Maker/"
+            },
+            {
+              "name": "Chest UI Editor",
+              "description": "UI visualizer and maker, but only for entity inventory ui.",
+              "link": " https://minato.beyondbedrock.org/web-apps/chest-ui-editor/"
+            },
+            {
+              "name": "Command Builder",
+              "description": "Builds custom commands.",
+              "link": "https://cmd-builder.beyondbedrock.org/"
+            },
+            {
+              "name": "Glyph Tool",
+              "description": "Glyph helper.",
+              "link": "https://glyphtool.luminiadev.com/"
+            },
+            {
+              "name": "Nine-Slice Viewer",
+              "description": "Image scale helper dealing with UI.",
+              "link": "https://minato.beyondbedrock.org/web-apps/9slice/"
+            },
+            {
+              "name": "Framebook Visual",
+              "description": "Frambook helper woth visualizing and editing.",
+              "link": "https://piggamers4u.github.io/Framebook-Visual/"
+            },
+            {
+              "name": "Bedrock JSON UI Editor",
+              "description": "Visualizer and editor for resource pack UIs.",
+              "link": "https://w1zardz.github.io/bedrock-json-ui-editor/"
+            },
+            {
+              "name": "Java to Bedrock Pack Converter",
+              "description": "Converts Java texture packs to Bedrock.",
+              "link": "https://rtm516.github.io/ConvertJavaTextureToBedrock//"
+            },
+            {
+              "name": "Json UI Skill",
+              "description": "AI helping make UI.",
+              "link": "https://github.com/boredape874/mcbejsonuimasterAI"
+            },
+            {
+              "name": "Resource Pack Skilled AI",
+              "description": "AI helping make resource pack.",
+              "link": "https://github.com/PigGamers4u/Resource-Pack-Skilled-AI"
+            },
+            {
+              "name": "Json Forge (UI)",
+              "description": "Visual JSON UI editor for Minecraft: Bedrock Edition..",
+              "link": "https://github.com/xRookieFight/jsonforge"
+            }
+          ]
+        };
+
+        const contentContainer = document.getElementById('contentContainer');
+        const searchInput = document.getElementById('searchInput');
+
+        function renderSources(data, filterQuery = '') {
+            contentContainer.innerHTML = '';
+            const query = filterQuery.toLowerCase().trim();
+            let totalMatches = 0;
+
+            Object.keys(data).forEach(category => {
+                const tools = data[category];
+
+                const filteredTools = tools.filter(tool => 
+                    tool.name.toLowerCase().includes(query) || 
+                    tool.description.toLowerCase().includes(query)
+                );
+
+                if (filteredTools.length > 0) {
+                    totalMatches += filteredTools.length;
+
+                    const section = document.createElement('section');
+                    section.className = 'category-section';
+
+                    const title = document.createElement('h2');
+                    title.className = 'category-title';
+                    title.textContent = category;
+                    section.appendChild(title);
+
+                    const grid = document.createElement('div');
+                    grid.className = 'tools-grid';
+
+                    filteredTools.forEach(tool => {
+                        const card = document.createElement('div');
+                        card.className = 'tool-card';
+
+                        card.innerHTML = `
+                            <div>
+                                <h3 class="tool-name">${escapeHtml(tool.name)}</h3>
+                                <div class="tool-description">${escapeHtml(tool.description)}</div>
+                            </div>
+                            <a href="${escapeHtml(tool.link)}" target="_blank" rel="noopener noreferrer" class="tool-link">
+                                Open Tool
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M14 3h7v7h-2V6.414l-9.293 9.293-1.414-1.414L17.586 5H14V3zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/>
+                                </svg>
+                            </a>
+                        `;
+                        grid.appendChild(card);
+                    });
+
+                    section.appendChild(grid);
+                    contentContainer.appendChild(section);
+                }
+            });
+
+            if (totalMatches === 0 && query !== '') {
+                contentContainer.innerHTML = `
+                    <div class="status-msg">No tools found matching "${escapeHtml(query)}"</div>
+                `;
+            }
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            renderSources(sourcesData, e.target.value);
+        });
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Render on page load
+        renderSources(sourcesData);
+    </script>
+</body>
+</html>
